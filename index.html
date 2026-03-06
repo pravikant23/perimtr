@@ -359,19 +359,26 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 48px;
+    gap: 80px;
+    max-width: 1100px;
+    margin: 0 auto;
+    min-height: 200px;
+  }
+
+  .ethics h2 {
+    font-family: 'Instrument Serif', serif;
+    font-size: clamp(24px, 3vw, 40px);
+    font-weight: 400;
+    color: #f5f3ee;
+    max-width: 480px;
+    line-height: 1.2;
+    align-self: center;
+    margin: auto 0;
   }
 
   .ethics h2 em {
     color: #0a0a08;
     font-style: italic;
-  }
-    font-family: 'Instrument Serif', serif;
-    font-size: clamp(28px, 4vw, 48px);
-    font-weight: 400;
-    color: #f5f3ee;
-    max-width: 560px;
-    line-height: 1.2;
   }
 
   .ethics-points {
@@ -695,7 +702,7 @@
 <!-- ETHICS -->
 <div class="ethics reveal">
   <div class="ethics-inner">
-    <h2>Built from data. <em>Built for public good.</em></h2>
+    <h2>Built from data.<br><em>Built for public good.</em></h2>
     <div class="ethics-points">
       <div class="ethics-point"><span><strong>No demographic data.</strong> Race, income, ethnicity — none of it touches our model.</span></div>
       <div class="ethics-point"><span><strong>No profiling.</strong> We score locations, not residents or applicants.</span></div>
