@@ -287,16 +287,16 @@
   .source-item.active .source-dot { background: var(--accent); }
   .source-name {
     font-family: 'DM Mono', monospace;
-    font-size: 12px;
+    font-size: 14px;
     font-weight: 500;
     color: var(--text);
     margin-bottom: 6px;
     letter-spacing: 0.05em;
   }
   .source-desc {
-    font-size: 12px;
+    font-size: 14px;
     color: var(--muted);
-    line-height: 1.5;
+    line-height: 1.6;
   }
 
   /* HOW IT WORKS */
@@ -337,7 +337,7 @@
   }
 
   .step p {
-    font-size: 14px;
+    font-size: 16px;
     color: var(--muted);
     line-height: 1.8;
   }
@@ -403,8 +403,8 @@
   }
 
   .ethics-point span {
-    font-size: 14px;
-    color: rgba(255,255,255,0.75);
+    font-size: 16px;
+    color: rgba(255,255,255,0.85);
     line-height: 1.6;
   }
 
@@ -741,9 +741,9 @@
 <div class="cta-bottom reveal">
   <h2>Be first to know <em>when we launch.</em></h2>
   <p>Early access for platforms building in Canada. Toronto first.</p>
-  <div class="capture-center">
-    <input type="email" placeholder="your@email.com" />
-    <button>Get Early Access</button>
+  <div class="capture-center" id="ctaCapture">
+    <input type="email" id="ctaEmail" placeholder="your@email.com" />
+    <button onclick="submitEmail('ctaEmail', 'ctaCapture')">Get Early Access</button>
   </div>
 </div>
 
@@ -960,6 +960,27 @@
   mkSectionCanvas('howCanvas', 24, 0.0005, 0.9);
   // Built For — right side, calm
   mkSectionCanvas('builtCanvas', 20, 0.0003, 0.8);
+
+  // =====================
+  // EMAIL CAPTURE → GOOGLE SHEETS
+  // =====================
+  const SHEET_URL = 'https://script.google.com/macros/s/AKfycbz879cNl0kPaoag7LGiuhLIY_Y0gcnwKw5sMolpGf1N_UpasrzynmT34_NI8EP7raXPMQ/exec';
+
+  function submitEmail(inputId, containerId) {
+    const input = document.getElementById(inputId);
+    const container = document.getElementById(containerId);
+    const email = input.value.trim();
+    if (!email || !email.includes('@')) {
+      input.style.borderColor = '#ff2020';
+      setTimeout(() => input.style.borderColor = '', 1200);
+      return;
+    }
+    fetch(SHEET_URL, {
+      method: 'POST',
+      body: new URLSearchParams({ email: email })
+    });
+    container.innerHTML = "<p style=\"font-family:'DM Mono',monospace;font-size:13px;color:var(--accent);letter-spacing:0.08em;\">You're on the list. We'll be in touch.</p>";
+  }
 
 </script>
 
