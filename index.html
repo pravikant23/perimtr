@@ -962,10 +962,8 @@
   mkSectionCanvas('builtCanvas', 20, 0.0003, 0.8);
 
   // =====================
-  // EMAIL CAPTURE → GOOGLE SHEETS
+  // EMAIL CAPTURE → FORMSPREE
   // =====================
-  const SHEET_URL = 'https://script.google.com/macros/s/AKfycbz3zQaaIPMSMi5MneWFRVWTs0Ixrqn7zxXVHWCyU8JxVgbJhOSbLT4b1sFsuNRPyUgoew/exec';
-
   function submitEmail(inputId, containerId) {
     const input = document.getElementById(inputId);
     const container = document.getElementById(containerId);
@@ -975,11 +973,12 @@
       setTimeout(() => input.style.borderColor = '', 1200);
       return;
     }
-    fetch(SHEET_URL, {
+    fetch('https://formspree.io/f/mlgornkl', {
       method: 'POST',
-      body: new URLSearchParams({ email: email })
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({ email: email })
     });
-    container.innerHTML = "<p style=\"font-family:'DM Mono',monospace;font-size:13px;color:var(--accent);letter-spacing:0.08em;\">You're on the list. We'll be in touch.</p>";
+    container.innerHTML = "<p style=\"font-family:'DM Mono',monospace;font-size:13px;color:var(--accent);letter-spacing:0.08em;text-align:center;width:100%;margin:0 auto;\">You're on the list. We'll be in touch.</p>";
   }
 
 </script>
