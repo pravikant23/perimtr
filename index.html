@@ -975,10 +975,7 @@
       setTimeout(() => input.style.borderColor = '', 1200);
       return;
     }
-    fetch(SHEET_URL, {
-      method: 'POST',
-      body: new URLSearchParams({ email: email })
-    });
+    fetch(SHEET_URL + '?email=' + encodeURIComponent(email));
     container.innerHTML = "<p style=\"font-family:'DM Mono',monospace;font-size:13px;color:var(--accent);letter-spacing:0.08em;\">You're on the list. We'll be in touch.</p>";
   }
 
